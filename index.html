@@ -225,12 +225,13 @@ footer{text-align:center;color:var(--ink2);font-size:12px;margin-top:30px;line-h
   </footer>
 </div>
 <div class="toast" id="toast"></div>
+<script src="questions.js"></script>
 
 <script>
 const COLORS={chi:"var(--chi)",eng:"var(--eng)",mat:"var(--mat)"};
 const NAMES={chi:"中文",eng:"English",mat:"數學"};
 
-const BANK = {
+const BANK_FALLBACK = {
 chi:[
  {t:"看圖識字",q:['☀️ 太陽，寫成哪個字？'],o:["月","日","目","白"],a:1,g:"「日」就是太陽 ☀️",b:"太陽寫成「日」。"},
  {t:"看圖識字",q:['⛰️ 高山，寫成哪個字？'],o:["山","出","土","上"],a:0,g:"「山」有三個尖，像山峰 ⛰️",b:"高山寫成「山」。"},
@@ -301,6 +302,17 @@ mat:[
 
 let cur=null, qlist=[], idx=0, score=0, locked=false;
 const TOTAL=20;
+
+// 由獨立題庫檔取題;該年級未有內容就暫用 P1;都冇就用內置後備
+function getBank(subject){
+  const g=getGrade();
+  if(window.QUESTION_BANK){
+    if(QUESTION_BANK[g] && QUESTION_BANK[g][subject]) return QUESTION_BANK[g][subject];
+    if(QUESTION_BANK.P1 && QUESTION_BANK.P1[subject]) return QUESTION_BANK.P1[subject];
+  }
+  return BANK_FALLBACK[subject]||[];
+}
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t;}return a;}
 
 /* ===== 年級 ===== */
 const GRADE_NAMES={K1:"K1",K2:"K2",K3:"K3",P1:"小一",P2:"小二",P3:"小三",P4:"小四",P5:"小五",P6:"小六"};
@@ -425,7 +437,7 @@ function genMathSet(grade,n){
 function start(s){
   cur=s; idx=0; score=0; locked=false;
   if(s==="mat") qlist=genMathSet(getGrade(),TOTAL);
-  else qlist=BANK[s].slice(0,TOTAL);
+  else qlist=shuffle(getBank(s)).slice(0,TOTAL);
   document.getElementById("home").style.display="none";
   document.getElementById("resultView").style.display="none";
   document.getElementById("quizView").style.display="block";
@@ -479,7 +491,7 @@ function similarQuestion(q){
   if(cur==="mat"){
     const gen=genMath(q.t); if(gen) return gen;
   }
-  const pool=BANK[cur].filter(x=>x.t===q.t && x.q.join()!==q.q.join());
+  const pool=getBank(cur).filter(x=>x.t===q.t && x.q.join()!==q.q.join());
   if(pool.length) return pool[Math.floor(pickSeed()*pool.length)];
   return null;
 }
