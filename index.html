@@ -1,0 +1,539 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>小練字</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<style>
+:root{
+  --bg:#FBF7EF; --paper:#FFFFFF; --ink:#2C2A26; --ink2:#7C7566; --line:#EAE0CF;
+  --brand:#C8442E; --brand2:#E8A33D; --ok:#3F8F5B; --ok-bg:#E7F3EA;
+  --no:#C8442E; --no-bg:#FBE9E4;
+  --chi:#C8442E; --eng:#3D6FB0; --mat:#3F8F5B;
+  --shadow:0 1px 3px rgba(44,42,38,.07),0 8px 24px rgba(44,42,38,.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#1E1B17; --paper:#2A2620; --ink:#F2ECE0; --ink2:#B0A692; --line:#403A2F;
+    --brand:#E86A52; --brand2:#E8A33D; --ok:#7DBF93; --ok-bg:#23332A;
+    --no:#E86A52; --no-bg:#3A241F;
+    --chi:#E86A52; --eng:#6B9BD8; --mat:#7DBF93;
+    --shadow:0 1px 3px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.3);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1E1B17; --paper:#2A2620; --ink:#F2ECE0; --ink2:#B0A692; --line:#403A2F;
+  --brand:#E86A52; --brand2:#E8A33D; --ok:#7DBF93; --ok-bg:#23332A;
+  --no:#E86A52; --no-bg:#3A241F;
+  --chi:#E86A52; --eng:#6B9BD8; --mat:#7DBF93;
+  --shadow:0 1px 3px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.3);
+}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font-family:'Noto Sans TC','PingFang HK',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:520px;margin:0 auto;padding:20px 18px 60px}
+header{text-align:center;padding:16px 0 4px}
+header .logo{font-family:'Noto Serif TC',serif;font-size:30px;font-weight:700;color:var(--brand);letter-spacing:.1em}
+header p{color:var(--ink2);font-size:14px;margin-top:4px}
+/* 年級 */
+.gradebar{display:flex;align-items:center;gap:10px;margin-top:18px;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:12px 16px;box-shadow:var(--shadow)}
+.gradebar .gb-label{font-size:14px;color:var(--ink2);font-weight:500}
+.gradebar select{margin-left:auto;font:inherit;font-size:16px;font-weight:700;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px 12px;cursor:pointer}
+/* 星星銀行 */
+.starbank{display:flex;align-items:center;gap:10px;background:linear-gradient(100deg,var(--brand2),var(--brand));color:#fff;border:0;border-radius:16px;padding:14px 18px;margin-top:20px;cursor:pointer;box-shadow:var(--shadow);width:100%;font:inherit}
+.starbank .sb-star{font-size:24px}
+.starbank .sb-txt{font-size:16px}.starbank .sb-txt b{font-size:22px;font-family:'Noto Serif TC',serif}
+.starbank .sb-go{margin-left:auto;font-weight:700;font-size:14px;background:rgba(255,255,255,.25);padding:6px 12px;border-radius:99px}
+/* 獎勵店 */
+.rw-head{text-align:center;padding:20px 0 6px}
+.rw-big{font-size:40px;font-family:'Noto Serif TC',serif;font-weight:700;color:var(--brand2)}
+.rw-sub{display:block;color:var(--ink2);font-size:14px;margin-top:2px}
+.reward{display:flex;align-items:center;gap:14px;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px;margin-top:12px;box-shadow:var(--shadow)}
+.reward .r-emoji{font-size:26px;flex:none}
+.reward .r-nm{font-weight:700;font-size:17px}
+.reward .r-cost{font-size:13px;color:var(--brand);font-weight:700}
+.reward .r-btn{margin-left:auto;flex:none;border:0;border-radius:12px;font:inherit;font-weight:700;padding:10px 16px;cursor:pointer;box-shadow:var(--shadow)}
+.reward .r-btn.can{background:var(--ok);color:#fff}
+.reward .r-btn.cant{background:var(--line);color:var(--ink2);cursor:not-allowed}
+.reward .r-del{margin-left:6px;flex:none;background:none;border:0;color:var(--ink2);font-size:18px;cursor:pointer;padding:4px}
+.rw-add{margin-top:22px;background:var(--paper);border:1px dashed var(--line);border-radius:16px;padding:16px}
+.rw-add-title{font-size:14px;color:var(--ink2);margin-bottom:10px}
+.rw-add-row{display:flex;gap:8px}
+.rw-add-row input{font:inherit;font-size:15px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px}
+.rw-add-row input#rwName{flex:1}
+.rw-add-row input#rwCost{width:64px;text-align:center}
+.rw-add-row button{flex:none;background:var(--brand);color:#fff;border:0;border-radius:10px;font:inherit;font-weight:700;padding:0 18px;cursor:pointer}
+.earned{font-size:15px;color:var(--brand);font-weight:700;margin-top:6px}
+.toast{position:fixed;left:50%;bottom:30px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:12px 22px;border-radius:99px;font-size:15px;font-weight:700;box-shadow:var(--shadow);opacity:0;transition:.3s;pointer-events:none;z-index:9}
+.toast.show{opacity:1}
+/* 科目選擇 */
+.subjects{display:grid;gap:14px;margin-top:18px}
+.subj{display:flex;align-items:center;gap:16px;background:var(--paper);border:2px solid var(--line);border-radius:18px;padding:20px;cursor:pointer;font:inherit;color:var(--ink);text-align:left;box-shadow:var(--shadow);transition:.15s}
+.subj:hover{transform:translateY(-2px)}
+.subj .icon{flex:none;width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:30px}
+.subj.chi .icon{background:var(--no-bg)}
+.subj.eng .icon{background:#E7EEF7}
+.subj.mat .icon{background:var(--ok-bg)}
+:root[data-theme="dark"] .subj.eng .icon,
+:root:not([data-theme="light"]) .subj.eng .icon{background:#22303f}
+.subj .nm{font-family:'Noto Serif TC',serif;font-size:21px;font-weight:700}
+.subj .sub{font-size:13px;color:var(--ink2);margin-top:2px}
+.subj .done{margin-left:auto;flex:none;font-size:13px;font-weight:700;padding:5px 12px;border-radius:99px;background:var(--line);color:var(--ink2)}
+.subj .done.ok{background:var(--ok-bg);color:var(--ok)}
+.dayline{text-align:center;color:var(--ink2);font-size:13px;margin-top:22px}
+/* 進度 */
+.bar-wrap{display:flex;align-items:center;gap:10px;margin:18px 2px 0}
+.bar{flex:1;height:8px;background:var(--line);border-radius:99px;overflow:hidden}
+.bar span{display:block;height:100%;border-radius:99px;transition:width .35s ease}
+.bar-txt{font-size:13px;color:var(--ink2);font-variant-numeric:tabular-nums;flex:none}
+.subj-tag{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;margin:16px 2px 0}
+.back{background:none;border:0;color:var(--ink2);font:inherit;font-size:14px;cursor:pointer;padding:4px 0}
+/* 卡 */
+.card{background:var(--paper);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:26px 22px;margin-top:12px}
+.qtype{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.1em;border-radius:99px;padding:4px 12px;margin-bottom:16px}
+.qtext{font-family:'Noto Serif TC',serif;font-size:24px;font-weight:600;line-height:1.7;text-wrap:balance}
+.qtext .blank{border-bottom:3px solid var(--brand2);padding:0 20px;color:var(--brand)}
+.opts{display:grid;gap:10px;margin-top:22px}
+.opt{display:flex;align-items:center;gap:12px;background:var(--paper);border:2px solid var(--line);border-radius:14px;padding:14px 16px;font:inherit;font-size:19px;color:var(--ink);cursor:pointer;text-align:left;transition:.15s}
+.opt:hover:not(:disabled){border-color:var(--brand2)}
+.opt .k{flex:none;width:30px;height:30px;border-radius:8px;background:var(--line);color:var(--ink2);font-weight:700;display:flex;align-items:center;justify-content:center;font-size:15px}
+.opt.correct{border-color:var(--ok);background:var(--ok-bg)}
+.opt.correct .k{background:var(--ok);color:#fff}
+.opt.wrong{border-color:var(--no);background:var(--no-bg)}
+.opt.wrong .k{background:var(--no);color:#fff}
+.opt:disabled{cursor:default}
+.feedback{margin-top:18px;padding:14px 16px;border-radius:14px;font-size:15px;display:none}
+.feedback.show{display:block}
+.feedback.good{background:var(--ok-bg);color:var(--ok)}
+.feedback.bad{background:var(--no-bg);color:var(--no)}
+.feedback b{font-weight:700}
+.next{margin-top:16px;width:100%;color:#fff;border:0;border-radius:14px;font:inherit;font-size:17px;font-weight:700;padding:15px;cursor:pointer;display:none;box-shadow:var(--shadow)}
+.next.show{display:block}
+.next.retry{background:var(--brand2);color:#3a2a10}
+/* 結算 */
+.result{text-align:center;padding:30px 22px}
+.result .big{font-family:'Noto Serif TC',serif;font-size:60px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1}
+.result .label{color:var(--ink2);margin-top:6px}
+.result .stars{font-size:32px;letter-spacing:6px;margin:16px 0}
+.result .msg{font-family:'Noto Serif TC',serif;font-size:20px;font-weight:600;margin:10px 0 4px}
+.result .sub{color:var(--ink2);font-size:14px}
+.result .btns{display:flex;gap:10px;margin-top:22px}
+.result .btns button{flex:1;border:0;border-radius:14px;font:inherit;font-size:16px;font-weight:700;padding:14px;cursor:pointer;box-shadow:var(--shadow)}
+.b-again{background:var(--line);color:var(--ink)}
+.b-home{color:#fff}
+.demo-note{background:var(--brand2);color:#3a2a10;text-align:center;font-size:12.5px;letter-spacing:.08em;padding:7px;font-weight:600}
+footer{text-align:center;color:var(--ink2);font-size:12px;margin-top:30px;line-height:1.7}
+</style>
+
+<div class="demo-note">示範版 · 小一程度 · 每日中英數各 20 題 · 題目可自訂／分級</div>
+<div class="wrap">
+  <header>
+    <div class="logo">小練字</div>
+    <p id="subhead">今日練習 · 小一</p>
+  </header>
+
+  <!-- 主頁:科目選擇 -->
+  <div id="home">
+    <div class="gradebar">
+      <span class="gb-label">👨‍👩‍👧 年級</span>
+      <select id="grade" onchange="setGrade()">
+        <optgroup label="幼稚園">
+          <option value="K1">K1（幼兒班）</option>
+          <option value="K2">K2（低班）</option>
+          <option value="K3">K3（高班）</option>
+        </optgroup>
+        <optgroup label="小學">
+          <option value="P1" selected>小一</option>
+          <option value="P2">小二</option>
+          <option value="P3">小三</option>
+          <option value="P4">小四</option>
+          <option value="P5">小五</option>
+          <option value="P6">小六</option>
+        </optgroup>
+      </select>
+    </div>
+    <div class="starbank" onclick="openRewards()">
+      <span class="sb-star">⭐</span>
+      <span class="sb-txt"><b id="starTotal">0</b> 顆星星</span>
+      <span class="sb-go">獎勵 →</span>
+    </div>
+    <div class="subjects">
+      <button class="subj chi" onclick="start('chi')">
+        <span class="icon">📖</span>
+        <span><span class="nm">中文</span><div class="sub">認字 · 詞語 · 標點 · 20 題</div></span>
+        <span class="done" id="done-chi">未做</span>
+      </button>
+      <button class="subj eng" onclick="start('eng')">
+        <span class="icon">🔤</span>
+        <span><span class="nm">English</span><div class="sub">Words · Spelling · 20 題</div></span>
+        <span class="done" id="done-eng">未做</span>
+      </button>
+      <button class="subj mat" onclick="start('mat')">
+        <span class="icon">🔢</span>
+        <span><span class="nm">數學</span><div class="sub">加減 · 數量 · 比較 · 20 題</div></span>
+        <span class="done" id="done-mat">未做</span>
+      </button>
+    </div>
+    <div class="dayline" id="dayline"></div>
+    <div class="dayline" id="gradeNote" style="margin-top:6px;font-size:12px"></div>
+  </div>
+
+  <!-- 做題 -->
+  <div id="quizView" style="display:none">
+    <button class="back" onclick="goHome()">← 回主頁</button>
+    <div class="bar-wrap">
+      <div class="bar"><span id="bar" style="width:0%"></span></div>
+      <div class="bar-txt" id="barTxt">1 / 20</div>
+    </div>
+    <div id="quiz"></div>
+  </div>
+
+  <!-- 結算 -->
+  <div id="resultView" style="display:none">
+    <div class="card result">
+      <div class="big" id="score">0</div>
+      <div class="label" id="scoreLabel">分（滿分 20）</div>
+      <div class="stars" id="stars"></div>
+      <div class="earned" id="earned"></div>
+      <div class="msg" id="rmsg"></div>
+      <div class="sub" id="rsub"></div>
+      <div class="btns">
+        <button class="b-again" onclick="againSame()">再做一次</button>
+        <button class="b-home" id="homeBtn" onclick="goHome()">返主頁</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 獎勵店 -->
+  <div id="rewardView" style="display:none">
+    <button class="back" onclick="goHome()">← 回主頁</button>
+    <div class="rw-head">
+      <span class="rw-big">⭐ <b id="starTotal2">0</b></span>
+      <span class="rw-sub">你儲的星星</span>
+    </div>
+    <div id="rewardList"></div>
+    <div class="rw-add">
+      <div class="rw-add-title">👨‍👩‍👧 家長設定獎勵</div>
+      <div class="rw-add-row">
+        <input id="rwName" placeholder="獎勵（例:去公園玩）" maxlength="20">
+        <input id="rwCost" type="number" placeholder="星" inputmode="numeric" min="1">
+        <button onclick="addReward()">加</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    示範版本 · 成績只儲喺你自己部機<br>
+    正式版可加:每日新題、錯題重溫、家長報告、其他年級
+  </footer>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const COLORS={chi:"var(--chi)",eng:"var(--eng)",mat:"var(--mat)"};
+const NAMES={chi:"中文",eng:"English",mat:"數學"};
+
+const BANK = {
+chi:[
+ {t:"認字",q:['哪個字讀「日」？'],o:["月","日","目","白"],a:1,g:"「日」就是太陽 ☀️",b:"「日」是太陽。"},
+ {t:"認字",q:['哪個字讀「山」？'],o:["山","出","土","上"],a:0,g:"「山」有三個尖，像山峰 ⛰️",b:"「山」有三個尖。"},
+ {t:"量詞",q:['一','貓'],o:["隻","本","張","架"],a:0,g:"一隻貓 🐱",b:"動物用「隻」。"},
+ {t:"量詞",q:['一','書'],o:["隻","本","架","條"],a:1,g:"一本書 📖",b:"書用「本」。"},
+ {t:"反義詞",q:['「大」的相反是……'],o:["高","小","圓","長"],a:1,g:"大 ↔ 小",b:"「大」的相反是「小」。"},
+ {t:"反義詞",q:['「上」的相反是……'],o:["左","下","前","中"],a:1,g:"上 ↔ 下",b:"上的相反是「下」。"},
+ {t:"反義詞",q:['「開」的相反是……'],o:["關","走","坐","站"],a:0,g:"開 ↔ 關",b:"開門、關門。"},
+ {t:"填顏色",q:['草地是','色。'],o:["紅","綠","黑","藍"],a:1,g:"草地是綠色 🌿",b:"草是綠色。"},
+ {t:"填顏色",q:['天空是','色。'],o:["綠","藍","紅","黃"],a:1,g:"天空是藍色 💙",b:"天空是藍色。"},
+ {t:"認字",q:['「口」是身體哪個部位？'],o:["手","眼","嘴巴","腳"],a:2,g:"「口」就是嘴巴 👄",b:"「口」是嘴巴。"},
+ {t:"認字",q:['一隻手有多少隻手指？'],o:["三","五","七","十"],a:1,g:"一隻手有五隻手指 ✋",b:"一隻手有五隻手指。"},
+ {t:"數量詞",q:['兩','蘋果'],o:["個","隻","本","張"],a:0,g:"兩個蘋果 🍎🍎",b:"蘋果用「個」。"},
+ {t:"配對",q:['小朋友睡覺，是甚麼時候？'],o:["早上","晚上","中午","上課"],a:1,g:"晚上才睡覺 🌙",b:"晚上才睡覺。"},
+ {t:"配對",q:['下雨要用甚麼？'],o:["雨傘","風扇","眼鏡","鞋"],a:0,g:"下雨用雨傘 ☂️",b:"下雨用雨傘。"},
+ {t:"標點",q:['「你好嗎」句尾用……'],o:["。句號","？問號","！感嘆號","，逗號"],a:1,g:"問問題用問號 ？",b:"問人用問號。"},
+ {t:"標點",q:['「好開心啊」句尾用……'],o:["。句號","？問號","！感嘆號","，逗號"],a:2,g:"很興奮用感嘆號 ！",b:"開心、興奮用感嘆號。"},
+ {t:"部首",q:['「花」字上面是甚麼？'],o:["草花頭","水","火","木"],a:0,g:"「艹」草花頭，和植物有關 🌸",b:"花有草花頭。"},
+ {t:"筆順",q:['寫「十」字，先寫……'],o:["直","橫","點","撇"],a:1,g:"先橫後直 ✏️",b:"「十」先寫橫。"},
+ {t:"認字",q:['「爸爸」的「爸」，讀……'],o:["ba1(巴)","ma1(媽)","di4(弟)","ge1(哥)"],a:0,g:"爸 = ba1 👨",b:"爸讀 ba1。"},
+ {t:"詞語",q:['「小','友」是小朋友。'],o:["朋","明","名","門"],a:0,g:"小朋友 🧒",b:"是「小朋友」。"},
+],
+eng:[
+ {t:"Word",q:['哪個是「貓」？'],o:["dog","cat","pig","cow"],a:1,g:"cat = 貓 🐱",b:"貓 = cat。"},
+ {t:"Word",q:['哪個是「狗」？'],o:["cat","fish","dog","bird"],a:2,g:"dog = 狗 🐶",b:"狗 = dog。"},
+ {t:"Word",q:['哪個是「蘋果」？'],o:["apple","banana","orange","egg"],a:0,g:"apple = 蘋果 🍎",b:"蘋果 = apple。"},
+ {t:"Word",q:['哪個是「紅色」？'],o:["blue","red","green","black"],a:1,g:"red = 紅色 🔴",b:"紅色 = red。"},
+ {t:"Word",q:['哪個是「藍色」？'],o:["blue","red","yellow","pink"],a:0,g:"blue = 藍色 🔵",b:"藍色 = blue。"},
+ {t:"Number",q:['「3」的英文是……'],o:["two","three","four","five"],a:1,g:"three = 3 ✌️",b:"3 = three。"},
+ {t:"Number",q:['「5」的英文是……'],o:["four","six","five","ten"],a:2,g:"five = 5 🖐️",b:"5 = five。"},
+ {t:"Spelling",q:['c _ t (貓)，中間是……'],o:["a","e","i","o"],a:0,g:"c-a-t = cat 🐱",b:"cat 中間是 a。"},
+ {t:"Spelling",q:['d _ g (狗)，中間是……'],o:["a","o","u","e"],a:1,g:"d-o-g = dog 🐶",b:"dog 中間是 o。"},
+ {t:"Spelling",q:['s _ n (太陽)，中間是……'],o:["a","i","u","e"],a:2,g:"s-u-n = sun ☀️",b:"sun 中間是 u。"},
+ {t:"Word",q:['哪個是「書」？'],o:["book","pen","bag","desk"],a:0,g:"book = 書 📖",b:"書 = book。"},
+ {t:"Word",q:['哪個是「水」？'],o:["milk","water","juice","tea"],a:1,g:"water = 水 💧",b:"水 = water。"},
+ {t:"Opposite",q:['「big」的相反是……'],o:["tall","small","long","fat"],a:1,g:"big ↔ small",b:"big 相反 small。"},
+ {t:"Opposite",q:['「hot」的相反是……'],o:["warm","cold","dry","wet"],a:1,g:"hot ↔ cold ❄️",b:"hot 相反 cold。"},
+ {t:"Word",q:['「早晨」的英文是……'],o:["Good night","Good morning","Bye","Hello"],a:1,g:"Good morning = 早晨 🌅",b:"早晨 = Good morning。"},
+ {t:"Word",q:['哪個是「魚」？'],o:["fish","frog","fox","fly"],a:0,g:"fish = 魚 🐟",b:"魚 = fish。"},
+ {t:"Letter",q:['「A」之後的字母是……'],o:["B","C","D","E"],a:0,g:"A, B, C… 之後是 B",b:"A 之後是 B。"},
+ {t:"Letter",q:['「apple」開頭的字母是……'],o:["a","p","e","b"],a:0,g:"apple 由 a 開始",b:"apple 開頭是 a。"},
+ {t:"Number",q:['「10」的英文是……'],o:["ten","nine","eight","seven"],a:0,g:"ten = 10 🔟",b:"10 = ten。"},
+ {t:"Word",q:['哪個是「手」？'],o:["foot","hand","head","ear"],a:1,g:"hand = 手 ✋",b:"手 = hand。"},
+],
+mat:[
+ {t:"加法",q:['2 + 3 = ?'],o:["4","5","6","7"],a:1,g:"2 + 3 = 5 ✋",b:"2 加 3 等於 5。"},
+ {t:"加法",q:['1 + 4 = ?'],o:["5","4","6","3"],a:0,g:"1 + 4 = 5",b:"1 加 4 等於 5。"},
+ {t:"加法",q:['5 + 5 = ?'],o:["9","10","11","8"],a:1,g:"5 + 5 = 10 🙌",b:"5 加 5 等於 10。"},
+ {t:"減法",q:['4 - 1 = ?'],o:["2","3","4","5"],a:1,g:"4 - 1 = 3",b:"4 減 1 等於 3。"},
+ {t:"減法",q:['6 - 2 = ?'],o:["3","4","5","2"],a:1,g:"6 - 2 = 4",b:"6 減 2 等於 4。"},
+ {t:"減法",q:['10 - 3 = ?'],o:["6","7","8","5"],a:1,g:"10 - 3 = 7",b:"10 減 3 等於 7。"},
+ {t:"比較大小",q:['哪個較大？'],o:["7","3","5","1"],a:0,g:"7 最大 👍",b:"7 比其他大。"},
+ {t:"比較大小",q:['哪個較小？'],o:["8","2","6","9"],a:1,g:"2 最小",b:"2 比其他小。"},
+ {t:"數數",q:['🍎🍎🍎 有多少個？'],o:["2","3","4","5"],a:1,g:"3 個蘋果 🍎🍎🍎",b:"數一數：3 個。"},
+ {t:"數數",q:['⭐⭐⭐⭐ 有多少顆？'],o:["3","4","5","6"],a:1,g:"4 顆星 ⭐",b:"數一數：4 顆。"},
+ {t:"加法",q:['3 + 3 = ?'],o:["5","6","7","4"],a:1,g:"3 + 3 = 6",b:"3 加 3 等於 6。"},
+ {t:"加法",q:['0 + 7 = ?'],o:["0","7","1","8"],a:1,g:"0 + 7 = 7",b:"0 加任何數都是那個數。"},
+ {t:"減法",q:['9 - 9 = ?'],o:["0","1","9","18"],a:0,g:"9 - 9 = 0",b:"相同的數相減是 0。"},
+ {t:"順數",q:['5, 6, 7, ? 下一個是……'],o:["8","9","6","10"],a:0,g:"接著是 8",b:"5, 6, 7, 8。"},
+ {t:"順數",q:['2, 4, 6, ? 下一個是……'],o:["7","8","9","10"],a:1,g:"雙數：8",b:"2, 4, 6, 8。"},
+ {t:"比較",q:['5 __ 3 中間填……'],o:[">","<","=","+"],a:0,g:"5 大於 3，用 >",b:"5 > 3。"},
+ {t:"比較",q:['2 __ 6 中間填……'],o:[">","<","=","-"],a:1,g:"2 小於 6，用 <",b:"2 < 6。"},
+ {t:"加法",q:['4 + 2 = ?'],o:["5","6","7","8"],a:1,g:"4 + 2 = 6",b:"4 加 2 等於 6。"},
+ {t:"數量",q:['一星期有多少天？'],o:["5","6","7","10"],a:2,g:"一星期 7 天 📅",b:"一星期 7 天。"},
+ {t:"減法",q:['8 - 4 = ?'],o:["2","3","4","5"],a:2,g:"8 - 4 = 4",b:"8 減 4 等於 4。"},
+],
+};
+
+let cur=null, qlist=[], idx=0, score=0, locked=false;
+const TOTAL=20;
+
+/* ===== 年級 ===== */
+const GRADE_NAMES={K1:"K1",K2:"K2",K3:"K3",P1:"小一",P2:"小二",P3:"小三",P4:"小四",P5:"小五",P6:"小六"};
+function getGrade(){try{return localStorage.getItem("grade")||"P1"}catch(e){return "P1"}}
+function setGrade(){
+  const g=document.getElementById("grade").value;
+  try{localStorage.setItem("grade",g)}catch(e){}
+  updateGradeLabels();
+}
+function updateGradeLabels(){
+  const g=getGrade(), nm=GRADE_NAMES[g];
+  document.getElementById("subhead").textContent="今日練習 · "+nm;
+  const note=document.getElementById("gradeNote");
+  if(note) note.textContent = g==="P1"
+    ? "本示範為小一內容 · 其他年級題庫於正式版提供"
+    : nm+"：題庫於正式版提供，本示範先試小一題目";
+}
+
+/* ===== 星星銀行 ===== */
+function getStars(){try{return parseInt(localStorage.getItem("stars")||"0",10)||0}catch(e){return 0}}
+function setStars(n){try{localStorage.setItem("stars",n)}catch(e){}; renderStars();}
+function renderStars(){
+  const n=getStars();
+  document.getElementById("starTotal").textContent=n;
+  const t2=document.getElementById("starTotal2"); if(t2)t2.textContent=n;
+}
+const DEFAULT_REWARDS=[
+  {emoji:"🍦",name:"吃雪糕",cost:15},
+  {emoji:"📺",name:"看 30 分鐘卡通",cost:20},
+  {emoji:"🏞️",name:"去公園玩",cost:40},
+];
+function getRewards(){
+  try{const v=localStorage.getItem("rewards"); if(v)return JSON.parse(v);}catch(e){}
+  return DEFAULT_REWARDS.slice();
+}
+function saveRewards(r){try{localStorage.setItem("rewards",JSON.stringify(r))}catch(e){}}
+const EMOJIS=["🎁","🍦","🍫","📺","🎮","🏞️","🧸","🚲","🍕","🎨"];
+function addReward(){
+  const nm=document.getElementById("rwName").value.trim();
+  const cost=parseInt(document.getElementById("rwCost").value,10);
+  if(!nm||!cost||cost<1){toast("請填獎勵和星數");return;}
+  const r=getRewards();
+  r.push({emoji:EMOJIS[r.length%EMOJIS.length],name:nm,cost:cost});
+  saveRewards(r);
+  document.getElementById("rwName").value="";document.getElementById("rwCost").value="";
+  renderRewards();
+}
+function delReward(i){const r=getRewards();r.splice(i,1);saveRewards(r);renderRewards();}
+function redeem(i){
+  const r=getRewards(),n=getStars();
+  if(n<r[i].cost){toast("星星不夠，再多練習！");return;}
+  setStars(n-r[i].cost);
+  toast("換到「"+r[i].name+"」了 🎉");
+  renderRewards();
+}
+function renderRewards(){
+  renderStars();
+  const n=getStars(), r=getRewards();
+  document.getElementById("rewardList").innerHTML=r.map((x,i)=>
+    `<div class="reward">
+      <span class="r-emoji">${x.emoji}</span>
+      <span><span class="r-nm">${x.name}</span><br><span class="r-cost">⭐ ${x.cost} 顆</span></span>
+      <button class="r-btn ${n>=x.cost?'can':'cant'}" onclick="redeem(${i})">${n>=x.cost?'兌換':'不夠'}</button>
+      <button class="r-del" onclick="delReward(${i})">🗑️</button>
+    </div>`).join("")||'<p style="text-align:center;color:var(--ink2);margin-top:20px">未有獎勵，在下面加一個 👇</p>';
+}
+function openRewards(){
+  document.getElementById("home").style.display="none";
+  document.getElementById("rewardView").style.display="block";
+  renderRewards();
+}
+let toastTimer;
+function toast(msg){
+  const t=document.getElementById("toast");
+  t.textContent=msg;t.classList.add("show");
+  clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove("show"),2200);
+}
+
+function loadDone(){
+  ["chi","eng","mat"].forEach(s=>{
+    let v=null; try{v=localStorage.getItem("done-"+s)}catch(e){}
+    const el=document.getElementById("done-"+s);
+    if(v){el.textContent=v+"/"+TOTAL;el.classList.add("ok");}
+    else{el.textContent="未做";el.classList.remove("ok");}
+  });
+  const d=new Date();
+  document.getElementById("dayline").textContent="每天打開，三科各練 20 題 💪";
+}
+
+function start(s){
+  cur=s; qlist=BANK[s].slice(0,TOTAL); idx=0; score=0; locked=false;
+  document.getElementById("home").style.display="none";
+  document.getElementById("resultView").style.display="none";
+  document.getElementById("quizView").style.display="block";
+  document.getElementById("subhead").textContent="今日練習 · "+GRADE_NAMES[getGrade()]+" · "+NAMES[s];
+  document.getElementById("bar").style.background=
+    "linear-gradient(90deg,var(--brand2),"+COLORS[s]+")";
+  render();
+}
+
+function render(){
+  const q=qlist[idx];
+  document.getElementById("bar").style.width=(idx/qlist.length*100)+"%";
+  document.getElementById("barTxt").textContent=(idx+1)+" / "+qlist.length;
+  const qhtml=q.q.length>1?`${q.q[0]}<span class="blank">?</span>${q.q[1]}`:q.q[0];
+  const opts=q.o.map((o,i)=>
+    `<button class="opt" onclick="pick(${i})"><span class="k">${"ABCD"[i]}</span><span>${o}</span></button>`).join("");
+  document.getElementById("quiz").innerHTML=
+    `<div class="card">
+       <span class="qtype" style="color:${COLORS[cur]};background:var(--no-bg)">${q.t}</span>
+       <div class="qtext">${qhtml}</div>
+       <div class="opts" id="opts">${opts}</div>
+       <div class="feedback" id="fb"></div>
+       <button class="next retry" id="retryBtn" onclick="doRetry()">🔁 再試一題</button>
+       <button class="next" id="nextBtn" style="background:${COLORS[cur]}" onclick="next()">${idx<qlist.length-1?"下一題 →":"看成績 →"}</button>
+     </div>`;
+  locked=false;
+}
+
+function pick(i){
+  if(locked)return; locked=true;
+  const q=qlist[idx];
+  const btns=[...document.querySelectorAll("#opts .opt")];
+  btns.forEach(b=>b.disabled=true);
+  const fb=document.getElementById("fb");
+  if(i===q.a){
+    score++;btns[i].classList.add("correct");
+    fb.className="feedback good show";fb.innerHTML=`<b>答對了！</b> ${q.g}　⭐ 過關！`;
+    document.getElementById("nextBtn").classList.add("show");
+  }else{
+    // 精熟闖關:錯咗先教,再換一條類似題試過
+    btns[i].classList.add("wrong");btns[q.a].classList.add("correct");
+    fb.className="feedback bad show";
+    fb.innerHTML=`<b>再想想</b> ${q.b}　正確答案：<b>${q.o[q.a]}</b>`;
+    const rb=document.getElementById("retryBtn");
+    rb.classList.add("show");
+  }
+}
+
+// 換一條「類似題」— 數學自動生成,中英文抽同類型
+function similarQuestion(q){
+  if(cur==="mat"){
+    const gen=genMath(q.t); if(gen) return gen;
+  }
+  const pool=BANK[cur].filter(x=>x.t===q.t && x.q.join()!==q.q.join());
+  if(pool.length) return pool[Math.floor(pickSeed()*pool.length)];
+  return null;
+}
+let seedN=1;
+function pickSeed(){seedN=(seedN*9301+49297)%233280;return seedN/233280;}
+function genMath(type){
+  const r=(n)=>Math.floor(pickSeed()*n);
+  function opts(ans){
+    const s=new Set([ans]);
+    while(s.size<4){let d=ans+(r(5)-2);if(d>=0)s.add(d);}
+    const arr=[...s].sort(()=>pickSeed()-.5);
+    return {o:arr.map(String),a:arr.indexOf(ans)};
+  }
+  if(type==="加法"){const a=r(6),b=r(6),ans=a+b;const O=opts(ans);
+    return {t:"加法",q:[`${a} + ${b} = ?`],o:O.o,a:O.a,g:`${a} + ${b} = ${ans}`,b:`${a} 加 ${b} 等於 ${ans}。`};}
+  if(type==="減法"){const a=r(10)+1,b=r(a+1),ans=a-b;const O=opts(ans);
+    return {t:"減法",q:[`${a} - ${b} = ?`],o:O.o,a:O.a,g:`${a} - ${b} = ${ans}`,b:`${a} 減 ${b} 等於 ${ans}。`};}
+  return null;
+}
+
+let retryQ=null;
+function doRetry(){
+  const q=qlist[idx];
+  retryQ=similarQuestion(q);
+  document.getElementById("retryBtn").classList.remove("show");
+  if(!retryQ){ // 冇類似題就直接過
+    document.getElementById("nextBtn").classList.add("show"); return;
+  }
+  const opts=retryQ.o.map((o,i)=>
+    `<button class="opt" onclick="pickRetry(${i})"><span class="k">${"ABCD"[i]}</span><span>${o}</span></button>`).join("");
+  document.getElementById("quiz").innerHTML=
+    `<div class="card">
+       <span class="qtype" style="color:#8A6A1F;background:var(--no-bg)">🔁 再試一題（類似）</span>
+       <div class="qtext">${retryQ.q.length>1?`${retryQ.q[0]}<span class="blank">?</span>${retryQ.q[1]}`:retryQ.q[0]}</div>
+       <div class="opts" id="opts">${opts}</div>
+       <div class="feedback" id="fb"></div>
+       <button class="next" id="nextBtn" style="background:${COLORS[cur]}" onclick="next()">${idx<qlist.length-1?"下一題 →":"看成績 →"}</button>
+     </div>`;
+  locked=false;
+}
+function pickRetry(i){
+  if(locked)return;locked=true;
+  const btns=[...document.querySelectorAll("#opts .opt")];
+  btns.forEach(b=>b.disabled=true);
+  const fb=document.getElementById("fb");
+  if(i===retryQ.a){btns[i].classList.add("correct");
+    fb.className="feedback good show";fb.innerHTML=`<b>學會了！</b> ${retryQ.g}　⭐ 過關！`;}
+  else{btns[i].classList.add("wrong");btns[retryQ.a].classList.add("correct");
+    fb.className="feedback bad show";fb.innerHTML=`不要緊，慢慢來 💪　答案：<b>${retryQ.o[retryQ.a]}</b>`;}
+  document.getElementById("nextBtn").classList.add("show");
+}
+
+function next(){idx++; if(idx<qlist.length)render(); else showResult();}
+
+function showResult(){
+  document.getElementById("quizView").style.display="none";
+  document.getElementById("resultView").style.display="block";
+  document.getElementById("score").textContent=score;
+  document.getElementById("scoreLabel").textContent="分（滿分 "+qlist.length+"）· "+NAMES[cur];
+  const pct=score/qlist.length, n=Math.max(1,Math.round(pct*3));
+  document.getElementById("stars").textContent="⭐".repeat(n)+"☆".repeat(3-n);
+  let m,s;
+  if(pct===1){m="滿分！好厲害 🎉";s="全部答對，繼續保持！";}
+  else if(pct>=0.75){m="做得很好 👏";s="差一點就滿分！";}
+  else if(pct>=0.5){m="不錯喔 🙂";s="答錯的，再看一次就記得。";}
+  else{m="繼續努力 💪";s="慢慢來，多練幾次一定進步。";}
+  document.getElementById("rmsg").textContent=m;
+  document.getElementById("rsub").textContent=s;
+  // 賺星星:每答對一題 = 1 顆星,滿分額外獎 3 顆
+  let earn=score+(pct===1?3:0);
+  setStars(getStars()+earn);
+  document.getElementById("earned").textContent=
+    "⭐ 獲得 "+earn+" 顆星星"+(pct===1?"（滿分獎 +3！）":"");
+  try{localStorage.setItem("done-"+cur,score)}catch(e){}
+}
+
+function againSame(){start(cur);}
+function goHome(){
+  document.getElementById("quizView").style.display="none";
+  document.getElementById("resultView").style.display="none";
+  document.getElementById("rewardView").style.display="none";
+  document.getElementById("home").style.display="block";
+  updateGradeLabels();
+  loadDone();
+}
+
+document.getElementById("grade").value=getGrade();
+updateGradeLabels();
+loadDone();
+renderStars();
+</script>
