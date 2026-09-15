@@ -1,56 +1,65 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>小練字</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800;900&family=Noto+Sans+TC:wght@500;700;900&display=swap">
 <style>
 :root{
-  --bg:#FBF7EF; --paper:#FFFFFF; --ink:#2C2A26; --ink2:#7C7566; --line:#EAE0CF;
-  --brand:#C8442E; --brand2:#E8A33D; --ok:#3F8F5B; --ok-bg:#E7F3EA;
-  --no:#C8442E; --no-bg:#FBE9E4;
-  --chi:#C8442E; --eng:#3D6FB0; --mat:#3F8F5B;
-  --shadow:0 1px 3px rgba(44,42,38,.07),0 8px 24px rgba(44,42,38,.06);
+  --bg:#F0F7FF; --paper:#FFFFFF; --ink:#3C3B45; --ink2:#8E8DA0; --line:#E7E9F0;
+  --brand:#FF5A5F; --brand-d:#E23B45; --brand2:#FFC800; --brand2-d:#E0A800;
+  --ok:#58CC02; --ok-d:#46A302; --ok-bg:#E8FFD4;
+  --no:#FF4B4B; --no-d:#E03A3A; --no-bg:#FFE4E4;
+  --chi:#FF5A5F; --chi-d:#E23B45; --eng:#1CB0F6; --eng-d:#1493D0; --mat:#58CC02; --mat-d:#46A302;
+  --font:'Nunito','Noto Sans TC','PingFang HK',sans-serif;
+  --disp:'Fredoka','Nunito','Noto Sans TC',sans-serif;
+  --shadow:0 2px 0 rgba(0,0,0,.04),0 8px 22px rgba(60,80,120,.08);
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#1E1B17; --paper:#2A2620; --ink:#F2ECE0; --ink2:#B0A692; --line:#403A2F;
-    --brand:#E86A52; --brand2:#E8A33D; --ok:#7DBF93; --ok-bg:#23332A;
-    --no:#E86A52; --no-bg:#3A241F;
-    --chi:#E86A52; --eng:#6B9BD8; --mat:#7DBF93;
-    --shadow:0 1px 3px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.3);
+    --bg:#141726; --paper:#1F2338; --ink:#F0F1F8; --ink2:#9A9CB8; --line:#333854;
+    --brand:#FF6B70; --brand-d:#C93a44; --brand2:#FFCE33; --brand2-d:#C99C00;
+    --ok:#6BD62B; --ok-d:#4b9c10; --ok-bg:#22331A;
+    --no:#FF6B6B; --no-d:#c93a3a; --no-bg:#3A2020;
+    --chi:#FF6B70; --chi-d:#C93a44; --eng:#4AC0FF; --eng-d:#1a7fb8; --mat:#6BD62B; --mat-d:#4b9c10;
+    --shadow:0 2px 0 rgba(0,0,0,.2),0 8px 22px rgba(0,0,0,.35);
   }
 }
 :root[data-theme="dark"]{
-  --bg:#1E1B17; --paper:#2A2620; --ink:#F2ECE0; --ink2:#B0A692; --line:#403A2F;
-  --brand:#E86A52; --brand2:#E8A33D; --ok:#7DBF93; --ok-bg:#23332A;
-  --no:#E86A52; --no-bg:#3A241F;
-  --chi:#E86A52; --eng:#6B9BD8; --mat:#7DBF93;
-  --shadow:0 1px 3px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.3);
+  --bg:#141726; --paper:#1F2338; --ink:#F0F1F8; --ink2:#9A9CB8; --line:#333854;
+  --brand:#FF6B70; --brand-d:#C93a44; --brand2:#FFCE33; --brand2-d:#C99C00;
+  --ok:#6BD62B; --ok-d:#4b9c10; --ok-bg:#22331A;
+  --no:#FF6B6B; --no-d:#c93a3a; --no-bg:#3A2020;
+  --chi:#FF6B70; --chi-d:#C93a44; --eng:#4AC0FF; --eng-d:#1a7fb8; --mat:#6BD62B; --mat-d:#4b9c10;
+  --shadow:0 2px 0 rgba(0,0,0,.2),0 8px 22px rgba(0,0,0,.35);
 }
 *{box-sizing:border-box;margin:0}
-body{background:var(--bg);color:var(--ink);font-family:'Noto Sans TC','PingFang HK',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
-.wrap{max-width:520px;margin:0 auto;padding:20px 18px 60px}
-header{text-align:center;padding:16px 0 4px}
-header .logo{font-family:'Noto Serif TC',serif;font-size:30px;font-weight:700;color:var(--brand);letter-spacing:.1em}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.6;font-weight:700;-webkit-font-smoothing:antialiased}
+.wrap{max-width:520px;margin:0 auto;padding:20px 18px 70px}
+header{text-align:center;padding:14px 0 4px}
+header .logo{font-family:var(--disp);font-size:34px;font-weight:700;color:var(--brand);letter-spacing:.02em}
 header p{color:var(--ink2);font-size:14px;margin-top:4px}
 /* 年級 */
-.gradebar{display:flex;align-items:center;gap:10px;margin-top:18px;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:12px 16px;box-shadow:var(--shadow)}
-.gradebar .gb-label{font-size:14px;color:var(--ink2);font-weight:500}
-.gradebar select{margin-left:auto;font:inherit;font-size:16px;font-weight:700;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px 12px;cursor:pointer}
+.gradebar{display:flex;align-items:center;gap:10px;margin-top:18px;background:var(--paper);border:2px solid var(--line);border-radius:18px;padding:12px 16px;box-shadow:0 4px 14px rgba(60,80,120,.06)}
+.gradebar .gb-label{font-size:14px;color:var(--ink2);font-weight:800}
+.gradebar select{margin-left:auto;font:inherit;font-size:16px;font-weight:800;color:var(--ink);background:var(--bg);border:2px solid var(--line);border-radius:12px;padding:9px 12px;cursor:pointer}
 /* 星星銀行 */
-.starbank{display:flex;align-items:center;gap:10px;background:linear-gradient(100deg,var(--brand2),var(--brand));color:#fff;border:0;border-radius:16px;padding:14px 18px;margin-top:20px;cursor:pointer;box-shadow:var(--shadow);width:100%;font:inherit}
+.starbank{display:flex;align-items:center;gap:10px;background:linear-gradient(100deg,#FFD84D,#FFB800);color:#7a5200;border:0;border-radius:20px;padding:16px 18px;margin-top:16px;cursor:pointer;box-shadow:0 4px 0 var(--brand2-d),0 8px 18px rgba(255,200,0,.25);width:100%;font:inherit;transition:transform .1s,box-shadow .1s}
+.starbank:active{transform:translateY(4px);box-shadow:none}
 .starbank .sb-star{font-size:24px}
-.starbank .sb-txt{font-size:16px}.starbank .sb-txt b{font-size:22px;font-family:'Noto Serif TC',serif}
-.starbank .sb-go{margin-left:auto;font-weight:700;font-size:14px;background:rgba(255,255,255,.25);padding:6px 12px;border-radius:99px}
+.starbank .sb-txt{font-size:16px}.starbank .sb-txt b{font-size:22px;font-family:var(--disp)}
+.starbank .sb-go{margin-left:auto;font-weight:800;font-size:14px;background:rgba(0,0,0,.12);padding:7px 14px;border-radius:99px}
 /* 獎勵店 */
 .rw-head{text-align:center;padding:20px 0 6px}
-.rw-big{font-size:40px;font-family:'Noto Serif TC',serif;font-weight:700;color:var(--brand2)}
+.rw-big{font-size:40px;font-family:var(--disp);font-weight:700;color:var(--brand2)}
 .rw-sub{display:block;color:var(--ink2);font-size:14px;margin-top:2px}
 .reward{display:flex;align-items:center;gap:14px;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px;margin-top:12px;box-shadow:var(--shadow)}
 .reward .r-emoji{font-size:26px;flex:none}
 .reward .r-nm{font-weight:700;font-size:17px}
 .reward .r-cost{font-size:13px;color:var(--brand);font-weight:700}
-.reward .r-btn{margin-left:auto;flex:none;border:0;border-radius:12px;font:inherit;font-weight:700;padding:10px 16px;cursor:pointer;box-shadow:var(--shadow)}
-.reward .r-btn.can{background:var(--ok);color:#fff}
+.reward{border:2px solid var(--line)!important;border-radius:18px!important}
+.reward .r-btn{margin-left:auto;flex:none;border:0;border-radius:12px;font:inherit;font-weight:800;padding:10px 18px;cursor:pointer;box-shadow:0 3px 0 rgba(0,0,0,.15);transition:transform .08s,box-shadow .08s}
+.reward .r-btn:active{transform:translateY(3px);box-shadow:none}
+.reward .r-btn.can{background:var(--ok);color:#fff;box-shadow:0 3px 0 var(--ok-d)}
 .reward .r-btn.cant{background:var(--line);color:var(--ink2);cursor:not-allowed}
 .reward .r-del{margin-left:6px;flex:none;background:none;border:0;color:var(--ink2);font-size:18px;cursor:pointer;padding:4px}
 .rw-add{margin-top:22px;background:var(--paper);border:1px dashed var(--line);border-radius:16px;padding:16px}
@@ -65,64 +74,71 @@ header p{color:var(--ink2);font-size:14px;margin-top:4px}
 .toast.show{opacity:1}
 /* 科目選擇 */
 .subjects{display:grid;gap:14px;margin-top:18px}
-.subj{display:flex;align-items:center;gap:16px;background:var(--paper);border:2px solid var(--line);border-radius:18px;padding:20px;cursor:pointer;font:inherit;color:var(--ink);text-align:left;box-shadow:var(--shadow);transition:.15s}
-.subj:hover{transform:translateY(-2px)}
-.subj .icon{flex:none;width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:30px}
+.subj{display:flex;align-items:center;gap:16px;background:var(--paper);border:2px solid var(--line);border-radius:22px;padding:18px 20px;cursor:pointer;font:inherit;color:var(--ink);text-align:left;box-shadow:0 4px 0 var(--line),0 8px 18px rgba(60,80,120,.07);transition:transform .1s,box-shadow .1s}
+.subj:active{transform:translateY(4px);box-shadow:0 0 0 var(--line)}
+.subj.chi{border-color:var(--chi)}.subj.chi{box-shadow:0 4px 0 var(--chi-d),0 8px 18px rgba(255,90,95,.14)}
+.subj.eng{border-color:var(--eng)}.subj.eng{box-shadow:0 4px 0 var(--eng-d),0 8px 18px rgba(28,176,246,.14)}
+.subj.mat{border-color:var(--mat)}.subj.mat{box-shadow:0 4px 0 var(--mat-d),0 8px 18px rgba(88,204,2,.14)}
+.subj:active{transform:translateY(4px)!important;box-shadow:none!important}
+.subj .icon{flex:none;width:58px;height:58px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:32px}
 .subj.chi .icon{background:var(--no-bg)}
-.subj.eng .icon{background:#E7EEF7}
+.subj.eng .icon{background:#DCF2FF}
 .subj.mat .icon{background:var(--ok-bg)}
 :root[data-theme="dark"] .subj.eng .icon,
 :root:not([data-theme="light"]) .subj.eng .icon{background:#22303f}
-.subj .nm{font-family:'Noto Serif TC',serif;font-size:21px;font-weight:700}
+.subj .nm{font-family:var(--disp);font-size:21px;font-weight:700}
 .subj .sub{font-size:13px;color:var(--ink2);margin-top:2px}
 .subj .done{margin-left:auto;flex:none;font-size:13px;font-weight:700;padding:5px 12px;border-radius:99px;background:var(--line);color:var(--ink2)}
 .subj .done.ok{background:var(--ok-bg);color:var(--ok)}
 .dayline{text-align:center;color:var(--ink2);font-size:13px;margin-top:22px}
 /* 進度 */
 .bar-wrap{display:flex;align-items:center;gap:10px;margin:18px 2px 0}
-.bar{flex:1;height:8px;background:var(--line);border-radius:99px;overflow:hidden}
+.bar{flex:1;height:14px;background:var(--line);border-radius:99px;overflow:hidden}
 .bar span{display:block;height:100%;border-radius:99px;transition:width .35s ease}
 .bar-txt{font-size:13px;color:var(--ink2);font-variant-numeric:tabular-nums;flex:none}
 .subj-tag{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;margin:16px 2px 0}
 .back{background:none;border:0;color:var(--ink2);font:inherit;font-size:14px;cursor:pointer;padding:4px 0}
 /* 卡 */
-.card{background:var(--paper);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:26px 22px;margin-top:12px}
-.qtype{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.1em;border-radius:99px;padding:4px 12px;margin-bottom:16px}
-.qtext{font-family:'Noto Serif TC',serif;font-size:24px;font-weight:600;line-height:1.7;text-wrap:balance}
+.card{background:var(--paper);border:2px solid var(--line);border-radius:26px;box-shadow:0 6px 22px rgba(60,80,120,.09);padding:26px 22px;margin-top:12px}
+.qtype{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.08em;border-radius:99px;padding:5px 14px;margin-bottom:16px}
+.qtext{font-family:var(--disp);font-size:24px;font-weight:600;line-height:1.7;text-wrap:balance}
 .qtext .blank{border-bottom:3px solid var(--brand2);padding:0 20px;color:var(--brand)}
 .opts{display:grid;gap:10px;margin-top:22px}
-.opt{display:flex;align-items:center;gap:12px;background:var(--paper);border:2px solid var(--line);border-radius:14px;padding:14px 16px;font:inherit;font-size:19px;color:var(--ink);cursor:pointer;text-align:left;transition:.15s}
-.opt:hover:not(:disabled){border-color:var(--brand2)}
-.opt .k{flex:none;width:30px;height:30px;border-radius:8px;background:var(--line);color:var(--ink2);font-weight:700;display:flex;align-items:center;justify-content:center;font-size:15px}
-.opt.correct{border-color:var(--ok);background:var(--ok-bg)}
+.opt{display:flex;align-items:center;gap:12px;background:var(--paper);border:2px solid var(--line);border-radius:16px;padding:15px 16px;font:inherit;font-size:20px;font-weight:800;color:var(--ink);cursor:pointer;text-align:left;box-shadow:0 3px 0 var(--line);transition:transform .08s,box-shadow .08s,border-color .08s}
+.opt:hover:not(:disabled){border-color:var(--eng);box-shadow:0 3px 0 var(--eng-d)}
+.opt:active:not(:disabled){transform:translateY(3px);box-shadow:none}
+.opt .k{flex:none;width:32px;height:32px;border-radius:10px;background:var(--line);color:var(--ink2);font-weight:800;display:flex;align-items:center;justify-content:center;font-size:15px}
+.opt.correct{border-color:var(--ok);background:var(--ok-bg);box-shadow:0 3px 0 var(--ok-d)}
 .opt.correct .k{background:var(--ok);color:#fff}
-.opt.wrong{border-color:var(--no);background:var(--no-bg)}
+.opt.wrong{border-color:var(--no);background:var(--no-bg);box-shadow:0 3px 0 var(--no-d)}
 .opt.wrong .k{background:var(--no);color:#fff}
 .opt:disabled{cursor:default}
-.feedback{margin-top:18px;padding:14px 16px;border-radius:14px;font-size:15px;display:none}
+.feedback{margin-top:18px;padding:14px 16px;border-radius:16px;font-size:16px;font-weight:800;display:none}
 .feedback.show{display:block}
-.feedback.good{background:var(--ok-bg);color:var(--ok)}
-.feedback.bad{background:var(--no-bg);color:var(--no)}
-.feedback b{font-weight:700}
-.next{margin-top:16px;width:100%;color:#fff;border:0;border-radius:14px;font:inherit;font-size:17px;font-weight:700;padding:15px;cursor:pointer;display:none;box-shadow:var(--shadow)}
+.feedback.good{background:var(--ok-bg);color:var(--ok-d)}
+.feedback.bad{background:var(--no-bg);color:var(--no-d)}
+.feedback b{font-weight:900}
+.next{margin-top:16px;width:100%;color:#fff;border:0;border-radius:16px;font:inherit;font-size:18px;font-weight:800;letter-spacing:.03em;padding:15px;cursor:pointer;display:none;box-shadow:0 4px 0 rgba(0,0,0,.18);transition:transform .08s,box-shadow .08s}
+.next:active{transform:translateY(4px);box-shadow:none}
 .next.show{display:block}
-.next.retry{background:var(--brand2);color:#3a2a10}
+.next.retry{background:var(--brand2);color:#7a5200}
 /* 結算 */
 .result{text-align:center;padding:30px 22px}
-.result .big{font-family:'Noto Serif TC',serif;font-size:60px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1}
-.result .label{color:var(--ink2);margin-top:6px}
-.result .stars{font-size:32px;letter-spacing:6px;margin:16px 0}
-.result .msg{font-family:'Noto Serif TC',serif;font-size:20px;font-weight:600;margin:10px 0 4px}
+.result .big{font-family:var(--disp);font-size:66px;font-weight:700;color:var(--brand);font-variant-numeric:tabular-nums;line-height:1}
+.result .label{color:var(--ink2);margin-top:6px;font-size:14px}
+.result .stars{font-size:38px;letter-spacing:6px;margin:16px 0}
+.result .msg{font-family:var(--disp);font-size:22px;font-weight:700;margin:10px 0 4px}
 .result .sub{color:var(--ink2);font-size:14px}
-.result .btns{display:flex;gap:10px;margin-top:22px}
-.result .btns button{flex:1;border:0;border-radius:14px;font:inherit;font-size:16px;font-weight:700;padding:14px;cursor:pointer;box-shadow:var(--shadow)}
-.b-again{background:var(--line);color:var(--ink)}
+.result .btns{display:flex;gap:10px;margin-top:24px}
+.result .btns button{flex:1;border:0;border-radius:16px;font:inherit;font-size:16px;font-weight:800;padding:15px;cursor:pointer;box-shadow:0 4px 0 rgba(0,0,0,.15);transition:transform .08s,box-shadow .08s}
+.result .btns button:active{transform:translateY(4px);box-shadow:none}
+.b-again{background:var(--line);color:var(--ink);box-shadow:0 4px 0 rgba(0,0,0,.08)!important}
 .b-home{color:#fff}
-.demo-note{background:var(--brand2);color:#3a2a10;text-align:center;font-size:12.5px;letter-spacing:.08em;padding:7px;font-weight:600}
+.demo-note{background:var(--brand2);color:#7a5200;text-align:center;font-size:12.5px;letter-spacing:.04em;padding:8px;font-weight:800}
 footer{text-align:center;color:var(--ink2);font-size:12px;margin-top:30px;line-height:1.7}
 </style>
 
-<div class="demo-note">示範版 · 數學已按年級自動生成 · 中英文示範為小一（正式版全年級）</div>
+<div class="demo-note">示範版 · K1 至小六題目按年級調整深淺 · 題庫陸續增加</div>
 <div class="wrap">
   <header>
     <div class="logo">小練字</div>
@@ -326,9 +342,13 @@ function updateGradeLabels(){
   const g=getGrade(), nm=GRADE_NAMES[g];
   document.getElementById("subhead").textContent="今日練習 · "+nm;
   const note=document.getElementById("gradeNote");
-  if(note) note.textContent = g==="P1"
-    ? "本示範為小一內容 · 其他年級題庫於正式版提供"
-    : nm+"：題庫於正式版提供，本示範先試小一題目";
+  if(note){
+    const has=window.QUESTION_BANK && QUESTION_BANK[g];
+    const n=has?(QUESTION_BANK[g].chi.length):0;
+    note.textContent = has
+      ? "已選 "+nm+" · 題目會按年級調整深淺（示範題庫，陸續增加）"
+      : nm+"：題庫製作中，暫用小一題目";
+  }
 }
 
 /* ===== 星星銀行 ===== */
