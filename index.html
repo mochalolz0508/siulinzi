@@ -1,6 +1,13 @@
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>小練字</title>
+<meta name="theme-color" content="#FF5A5F">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="小練字">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="description" content="小練字 · 兒童中英數練習，K1 至小六，每日闖關儲星星。">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800;900&family=Noto+Sans+TC:wght@500;700;900&display=swap">
 <style>
@@ -138,7 +145,6 @@ header p{color:var(--ink2);font-size:14px;margin-top:4px}
 footer{text-align:center;color:var(--ink2);font-size:12px;margin-top:30px;line-height:1.7}
 </style>
 
-<div class="demo-note">示範版 · K1 至小六題目按年級調整深淺 · 題庫陸續增加</div>
 <div class="wrap">
   <header>
     <div class="logo">小練字</div>
@@ -236,8 +242,8 @@ footer{text-align:center;color:var(--ink2);font-size:12px;margin-top:30px;line-h
   </div>
 
   <footer>
-    示範版本 · 成績只儲喺你自己部機<br>
-    正式版可加:每日新題、錯題重溫、家長報告、其他年級
+    小練字 · 兒童中英數練習<br>
+    進度會儲存喺這部裝置 · 可加到主畫面像 App 一樣用
   </footer>
 </div>
 <div class="toast" id="toast"></div>
@@ -346,7 +352,7 @@ function updateGradeLabels(){
     const has=window.QUESTION_BANK && QUESTION_BANK[g];
     const n=has?(QUESTION_BANK[g].chi.length):0;
     note.textContent = has
-      ? "已選 "+nm+" · 題目會按年級調整深淺（示範題庫，陸續增加）"
+      ? "已選 "+nm+" · 題目會按年級調整深淺"
       : nm+"：題庫製作中，暫用小一題目";
   }
 }

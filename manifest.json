@@ -1,0 +1,13 @@
+{
+  "name": "小練字",
+  "short_name": "小練字",
+  "description": "兒童中英數練習 · K1 至小六",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#F0F7FF",
+  "theme_color": "#FF5A5F",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
