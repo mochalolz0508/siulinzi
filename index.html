@@ -122,7 +122,7 @@ header p{color:var(--ink2);font-size:14px;margin-top:4px}
 footer{text-align:center;color:var(--ink2);font-size:12px;margin-top:30px;line-height:1.7}
 </style>
 
-<div class="demo-note">示範版 · 小一程度 · 每日中英數各 20 題 · 題目可自訂／分級</div>
+<div class="demo-note">示範版 · 數學已按年級自動生成 · 中英文示範為小一（正式版全年級）</div>
 <div class="wrap">
   <header>
     <div class="logo">小練字</div>
@@ -232,8 +232,8 @@ const NAMES={chi:"中文",eng:"English",mat:"數學"};
 
 const BANK = {
 chi:[
- {t:"認字",q:['哪個字讀「日」？'],o:["月","日","目","白"],a:1,g:"「日」就是太陽 ☀️",b:"「日」是太陽。"},
- {t:"認字",q:['哪個字讀「山」？'],o:["山","出","土","上"],a:0,g:"「山」有三個尖，像山峰 ⛰️",b:"「山」有三個尖。"},
+ {t:"看圖識字",q:['☀️ 太陽，寫成哪個字？'],o:["月","日","目","白"],a:1,g:"「日」就是太陽 ☀️",b:"太陽寫成「日」。"},
+ {t:"看圖識字",q:['⛰️ 高山，寫成哪個字？'],o:["山","出","土","上"],a:0,g:"「山」有三個尖，像山峰 ⛰️",b:"高山寫成「山」。"},
  {t:"量詞",q:['一','貓'],o:["隻","本","張","架"],a:0,g:"一隻貓 🐱",b:"動物用「隻」。"},
  {t:"量詞",q:['一','書'],o:["隻","本","架","條"],a:1,g:"一本書 📖",b:"書用「本」。"},
  {t:"反義詞",q:['「大」的相反是……'],o:["高","小","圓","長"],a:1,g:"大 ↔ 小",b:"「大」的相反是「小」。"},
@@ -254,26 +254,26 @@ chi:[
  {t:"詞語",q:['「小','友」是小朋友。'],o:["朋","明","名","門"],a:0,g:"小朋友 🧒",b:"是「小朋友」。"},
 ],
 eng:[
- {t:"Word",q:['哪個是「貓」？'],o:["dog","cat","pig","cow"],a:1,g:"cat = 貓 🐱",b:"貓 = cat。"},
- {t:"Word",q:['哪個是「狗」？'],o:["cat","fish","dog","bird"],a:2,g:"dog = 狗 🐶",b:"狗 = dog。"},
- {t:"Word",q:['哪個是「蘋果」？'],o:["apple","banana","orange","egg"],a:0,g:"apple = 蘋果 🍎",b:"蘋果 = apple。"},
- {t:"Word",q:['哪個是「紅色」？'],o:["blue","red","green","black"],a:1,g:"red = 紅色 🔴",b:"紅色 = red。"},
- {t:"Word",q:['哪個是「藍色」？'],o:["blue","red","yellow","pink"],a:0,g:"blue = 藍色 🔵",b:"藍色 = blue。"},
- {t:"Number",q:['「3」的英文是……'],o:["two","three","four","five"],a:1,g:"three = 3 ✌️",b:"3 = three。"},
- {t:"Number",q:['「5」的英文是……'],o:["four","six","five","ten"],a:2,g:"five = 5 🖐️",b:"5 = five。"},
- {t:"Spelling",q:['c _ t (貓)，中間是……'],o:["a","e","i","o"],a:0,g:"c-a-t = cat 🐱",b:"cat 中間是 a。"},
- {t:"Spelling",q:['d _ g (狗)，中間是……'],o:["a","o","u","e"],a:1,g:"d-o-g = dog 🐶",b:"dog 中間是 o。"},
- {t:"Spelling",q:['s _ n (太陽)，中間是……'],o:["a","i","u","e"],a:2,g:"s-u-n = sun ☀️",b:"sun 中間是 u。"},
- {t:"Word",q:['哪個是「書」？'],o:["book","pen","bag","desk"],a:0,g:"book = 書 📖",b:"書 = book。"},
- {t:"Word",q:['哪個是「水」？'],o:["milk","water","juice","tea"],a:1,g:"water = 水 💧",b:"水 = water。"},
- {t:"Opposite",q:['「big」的相反是……'],o:["tall","small","long","fat"],a:1,g:"big ↔ small",b:"big 相反 small。"},
- {t:"Opposite",q:['「hot」的相反是……'],o:["warm","cold","dry","wet"],a:1,g:"hot ↔ cold ❄️",b:"hot 相反 cold。"},
- {t:"Word",q:['「早晨」的英文是……'],o:["Good night","Good morning","Bye","Hello"],a:1,g:"Good morning = 早晨 🌅",b:"早晨 = Good morning。"},
- {t:"Word",q:['哪個是「魚」？'],o:["fish","frog","fox","fly"],a:0,g:"fish = 魚 🐟",b:"魚 = fish。"},
- {t:"Letter",q:['「A」之後的字母是……'],o:["B","C","D","E"],a:0,g:"A, B, C… 之後是 B",b:"A 之後是 B。"},
- {t:"Letter",q:['「apple」開頭的字母是……'],o:["a","p","e","b"],a:0,g:"apple 由 a 開始",b:"apple 開頭是 a。"},
- {t:"Number",q:['「10」的英文是……'],o:["ten","nine","eight","seven"],a:0,g:"ten = 10 🔟",b:"10 = ten。"},
- {t:"Word",q:['哪個是「手」？'],o:["foot","hand","head","ear"],a:1,g:"hand = 手 ✋",b:"手 = hand。"},
+ {t:"Match",q:['🐱 = ?'],o:["dog","cat","pig","cow"],a:1,g:"🐱 is a cat!",b:"🐱 = cat"},
+ {t:"Match",q:['🐶 = ?'],o:["cat","fish","dog","bird"],a:2,g:"🐶 is a dog!",b:"🐶 = dog"},
+ {t:"Match",q:['🍎 = ?'],o:["apple","banana","orange","egg"],a:0,g:"🍎 is an apple!",b:"🍎 = apple"},
+ {t:"Colour",q:['🔴 = ?'],o:["blue","red","green","black"],a:1,g:"🔴 is red!",b:"🔴 = red"},
+ {t:"Colour",q:['🔵 = ?'],o:["blue","red","yellow","pink"],a:0,g:"🔵 is blue!",b:"🔵 = blue"},
+ {t:"Number",q:['3 = ?'],o:["two","three","four","five"],a:1,g:"3 = three ✌️",b:"3 = three"},
+ {t:"Number",q:['5 = ?'],o:["four","six","five","ten"],a:2,g:"5 = five 🖐️",b:"5 = five"},
+ {t:"Spelling",q:['🐱  c _ t'],o:["a","e","i","o"],a:0,g:"c-a-t = cat",b:"cat"},
+ {t:"Spelling",q:['🐶  d _ g'],o:["a","o","u","e"],a:1,g:"d-o-g = dog",b:"dog"},
+ {t:"Spelling",q:['☀️  s _ n'],o:["a","i","u","e"],a:2,g:"s-u-n = sun",b:"sun"},
+ {t:"Match",q:['📖 = ?'],o:["book","pen","bag","desk"],a:0,g:"📖 is a book!",b:"📖 = book"},
+ {t:"Match",q:['💧 = ?'],o:["milk","water","juice","tea"],a:1,g:"💧 is water!",b:"💧 = water"},
+ {t:"Opposite",q:['big ↔ ?'],o:["tall","small","long","fat"],a:1,g:"big ↔ small",b:"big ↔ small"},
+ {t:"Opposite",q:['hot ↔ ?'],o:["warm","cold","dry","wet"],a:1,g:"hot ↔ cold ❄️",b:"hot ↔ cold"},
+ {t:"Greeting",q:['🌅  In the morning, we say…'],o:["Good night","Good morning","Bye","Sorry"],a:1,g:"🌅 Good morning!",b:"morning → Good morning"},
+ {t:"Match",q:['🐟 = ?'],o:["fish","frog","fox","fly"],a:0,g:"🐟 is a fish!",b:"🐟 = fish"},
+ {t:"Letter",q:['a  b  c  _'],o:["d","e","f","g"],a:0,g:"a b c d",b:"after c is d"},
+ {t:"Letter",q:['🍎 apple starts with…'],o:["a","p","e","b"],a:0,g:"apple → a",b:"apple starts with a"},
+ {t:"Number",q:['10 = ?'],o:["ten","nine","eight","seven"],a:0,g:"10 = ten 🔟",b:"10 = ten"},
+ {t:"Match",q:['✋ = ?'],o:["foot","hand","head","ear"],a:1,g:"✋ is a hand!",b:"✋ = hand"},
 ],
 mat:[
  {t:"加法",q:['2 + 3 = ?'],o:["4","5","6","7"],a:1,g:"2 + 3 = 5 ✋",b:"2 加 3 等於 5。"},
@@ -390,8 +390,42 @@ function loadDone(){
   document.getElementById("dayline").textContent="每天打開，三科各練 20 題 💪";
 }
 
+// 數學按年級自動生成整份題目(示範「分級＋自動出題」)
+function genMathSet(grade,n){
+  const cfg={
+    K1:{max:5,ops:["加","數"]}, K2:{max:5,ops:["加","數"]}, K3:{max:10,ops:["加","減","數"]},
+    P1:{max:20,ops:["加","減","比"]}, P2:{max:100,ops:["加","減","比"]},
+    P3:{max:1000,ops:["加","減","乘"]}, P4:{max:1000,ops:["加","減","乘","除"]},
+    P5:{max:10000,ops:["加","減","乘","除"]}, P6:{max:100000,ops:["加","減","乘","除"]},
+  }[grade]||{max:20,ops:["加","減"]};
+  const r=(x)=>Math.floor(pickSeed()*x);
+  const mkOpt=(ans)=>{const s=new Set([ans]);let g=0;
+    while(s.size<4&&g++<40){let d=ans+(r(Math.max(5,Math.floor(ans*0.2)+3))-2);if(d>=0&&d!==ans)s.add(d);}
+    while(s.size<4)s.add(ans+s.size);
+    const arr=[...s].sort(()=>pickSeed()-.5);return{o:arr.map(String),a:arr.indexOf(ans)};};
+  const out=[];
+  for(let i=0;i<n;i++){
+    const op=cfg.ops[r(cfg.ops.length)];
+    if(op==="數"){const c=r(Math.min(cfg.max,6))+2;const O=mkOpt(c);
+      out.push({t:"數數",q:["🍎".repeat(c)+" 有多少個？"],o:O.o,a:O.a,g:c+" 個",b:"數一數："+c+" 個。"});}
+    else if(op==="加"){const a=r(cfg.max),b=r(cfg.max-a>0?cfg.max-a:1),ans=a+b;const O=mkOpt(ans);
+      out.push({t:"加法",q:[`${a} + ${b} = ?`],o:O.o,a:O.a,g:`${a} + ${b} = ${ans}`,b:`${a} 加 ${b} 等於 ${ans}。`});}
+    else if(op==="減"){const a=r(cfg.max)+1,b=r(a+1),ans=a-b;const O=mkOpt(ans);
+      out.push({t:"減法",q:[`${a} - ${b} = ?`],o:O.o,a:O.a,g:`${a} - ${b} = ${ans}`,b:`${a} 減 ${b} 等於 ${ans}。`});}
+    else if(op==="乘"){const a=r(9)+1,b=r(9)+1,ans=a*b;const O=mkOpt(ans);
+      out.push({t:"乘法",q:[`${a} × ${b} = ?`],o:O.o,a:O.a,g:`${a} × ${b} = ${ans}`,b:`${a} 乘 ${b} 等於 ${ans}。`});}
+    else if(op==="除"){const b=r(9)+1,ans=r(9)+1,a=b*ans;const O=mkOpt(ans);
+      out.push({t:"除法",q:[`${a} ÷ ${b} = ?`],o:O.o,a:O.a,g:`${a} ÷ ${b} = ${ans}`,b:`${a} 除以 ${b} 等於 ${ans}。`});}
+    else{const a=r(cfg.max),b=r(cfg.max);const ans=a>b?">":a<b?"<":"=";const O={o:[">","<","="],a:[">","<","="].indexOf(ans)};
+      out.push({t:"比較",q:[`${a} __ ${b} 中間填……`],o:O.o,a:O.a,g:`${a} ${ans} ${b}`,b:`${a} ${ans} ${b}。`});}
+  }
+  return out;
+}
+
 function start(s){
-  cur=s; qlist=BANK[s].slice(0,TOTAL); idx=0; score=0; locked=false;
+  cur=s; idx=0; score=0; locked=false;
+  if(s==="mat") qlist=genMathSet(getGrade(),TOTAL);
+  else qlist=BANK[s].slice(0,TOTAL);
   document.getElementById("home").style.display="none";
   document.getElementById("resultView").style.display="none";
   document.getElementById("quizView").style.display="block";
